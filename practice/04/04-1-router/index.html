@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Router</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Vue Router Example</h1>
+      <p>
+        <!-- <router-link to="url"> : 페이지 이동 태그
+                                      <a>로 표시되며 클릭 시 to에 지정한 URL로 이동 -->
+        <router-link to="/main">Move to Main component</router-link>
+        <router-link to="/login">Move to Login component</router-link>
+      </p>
+      <!-- <router-view> : 페이지 표시 태그
+                           변경되는 URL에 따라 해당 컴포넌트 영역을 뿌려주는 영역 -->
+      <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+    <script>
+      // 1. 컴포넌트 정의
+      var Main = { template: '<div>main</div>'};
+      var Login = { template: '<div>login</div>'};
+
+      // 2. URL과 컴포넌트를 mapping
+      var routes = [
+        { path: '/main', component: Main },
+        { path: '/login', component: Login }
+      ];
+
+      // 3. VueRouter 정의
+      var router = new VueRouter({
+        routes
+      });
+
+      // 4. Vue 인스턴스에 VueRouter 등록
+      // 인스턴스 생성 시 el 속성을 이용하여 인스턴스를 화면에 붙이거나,
+      // $mount() API를 이용하여 인스턴스 생성 후 화면에 붙일 수 있다.
+      // VueRouter 공식문서에서는 인스턴스 안에 el을 지정하지 않고 라우터만 지정하고,
+      // 생성 후 $mount()를 이용하도록 가이드하고 있다.
+      var app = new Vue({
+        router
+      }).$mount('#app');
+    </script>
+  </body>
+</html>
