@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Axios Library</title>
+	</head>
+	<body>
+		<div id="app">
+      <button v-on:click="getData">Load Framework List</button>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 'axios'는 현재 가장 활성화된 http 통신 라이브러리 프로젝트이다.
+         주요 사용법은 https://github.com/axios/axios를 참고하자.
+    -->
+
+		<script>
+			new Vue({
+        el: '#app',
+        methods: {
+          getData: function() {
+            axios.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json')
+              .then(function(response) {
+                console.log(response);
+              });
+          }
+        }
+      });
+		</script>
+	</body>
+</html>
