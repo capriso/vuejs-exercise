@@ -1,7 +1,7 @@
 <template>
   <div class="inputBox shadow">
-    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" placeholder="Type what you have to do">
-    <span class="addContainer" v-on:click="addTodo">
+    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo" placeholder="Type what you have to do">
+    <span class="addContainer" @click="addTodo">
       <i class="addBtn fa fa-plus" aria-hidden="true"></i>
     </span>
   </div>
@@ -18,11 +18,7 @@ export default {
     addTodo() {
       if (this.newTodoItem !== "") {
         var value = this.newTodoItem && this.newTodoItem.trim();
-
-        // 로컬 스토리지에 데이터를 추가
-        // (key, value) pair로 저장하는데,
-        // 이 예제에서는 최대한 단순화하기 위해 key와 value를 동일하게 구성
-        localStorage.setItem(value, value);
+        this.$emit('addTodo', value);
         this.clearInput();
       }
     },
